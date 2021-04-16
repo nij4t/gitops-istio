@@ -11,7 +11,17 @@ spec:
     kind: Deployment
     name: podinfo
   service:
+    # container port
     port: 9898
+    trafficPolicy:
+      tls:
+        # use ISTIO_MUTUAL when mTLS is enabled
+        mode: DISABLE
+    hosts:
+    - "*"
+    match:
+    - uri:
+        exact: podinfo
   analysis:
     interval: 10s
     maxWeight: 100
