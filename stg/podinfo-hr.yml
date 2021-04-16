@@ -18,4 +18,6 @@ spec:
     service:
       enabled: false
       type: ClusterIP
+    podAnnotations: 
+      sidecar.istio.io/inject: "true"
 
