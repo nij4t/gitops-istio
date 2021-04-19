@@ -66,6 +66,11 @@ helm upgrade -i flux fluxcd/flux --wait \
 --set git.branch=${REPO_BRANCH} \
 --set git.path="" \
 --set git.pollInterval=1m \
+--set git.secret.enabled=true \
+--set git.user=Bender \
+--set git.email=bender@protonmail.com \
+--set gpgKeys.secretName=git-secret \
+--set gpgKeys.configMapName=git-secret \
 --set registry.pollInterval=1m \
 --set sync.state=secret \
 --set syncGarbageCollection.enabled=true \
