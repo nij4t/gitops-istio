@@ -15,3 +15,6 @@
 .DS_Store
 temp/
 bin/
+.gitsecret/keys/random_seed
+!*.secret
+flagger/flagger.yaml
