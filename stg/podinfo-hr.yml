@@ -21,4 +21,5 @@ spec:
       type: ClusterIP
     podAnnotations:
       sidecar.istio.io/inject: "true"
+      checksum: 21315af252aa37cd100f349476ff71f0ab13bcc5
 
