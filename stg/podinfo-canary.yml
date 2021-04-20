@@ -27,19 +27,26 @@ spec:
     - uri:
         exact: podinfo
   analysis:
-    interval: 10s
-    maxWeight: 100
-    stepWeight: 5
-    threshold: 5
+    interval: 15s
+    threshold: 10
+    iterations: 10
+    match:
+      - headers:
+          user-agent:
+            regex: ".*Firefox.*"
+            #regex: "^(?!.*(?:Chrome|Edge)).*Safari"
+      - headers:
+          cookie:
+            regex: "^(.*?;)?(type=insider)(;.*)?$"
     metrics:
       - name: request-success-rate
         thresholdRange:
           min: 99
-        interval: 1m
+        interval: 30s
       - name: request-duration
         thresholdRange:
           max: 500
-        interval: 1m
+        interval: 30s
     webhooks:
       - name: acceptance-test
         type: pre-rollout
@@ -59,4 +66,4 @@ spec:
         type: rollout
         url: http://flagger-loadtester.stg/
         metadata:
-          cmd: "hey -z 2m -q 10 -c 2 http://podinfo-canary.stg:9898/"
+          cmd: "hey -z 2m -q 10 -c 2 -H 'Cookie: type=insider' http://podinfo-canary.stg:9898/"
