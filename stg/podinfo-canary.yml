@@ -22,10 +22,10 @@ spec:
     - public-gateway.istio-system.svc.cluster.local
     # Istio virtual service host names (optional)
     hosts:
-    - "*"
-    match:
-    - uri:
-        exact: podinfo
+    - "podinfo.stg.digital"
+   # match:
+   # - uri:
+   #     exact: podinfo
   analysis:
     interval: 15s
     threshold: 10
