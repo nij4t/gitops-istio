@@ -17,6 +17,10 @@ spec:
       tls:
         # use ISTIO_MUTUAL when mTLS is enabled
         mode: DISABLE
+    # Istio gateways (optional)
+    gateways:
+    - public-gateway.istio-system.svc.cluster.local
+    # Istio virtual service host names (optional)
     hosts:
     - "*"
     match:
