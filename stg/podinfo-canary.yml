@@ -44,6 +44,13 @@ spec:
         metadata:
           type: bash
           cmd: "curl -sd 'test' http://podinfo-canary.stg:9898/token | grep token"
+      - name: smoke-test
+        type: pre-rollout
+        url: http://flagger-loadtester.stg/
+        timeout: 3m
+        metadata:
+          type: helmv3
+          cmd: test podinfo --cleanup --timeuout 3m --namespace stg
       - name: load-test
         type: rollout
         url: http://flagger-loadtester.stg/
