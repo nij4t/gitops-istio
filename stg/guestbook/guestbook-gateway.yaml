@@ -1,0 +1,32 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: guestbook-gateway
+  namespace: stg
+spec:
+  selector:
+    istio: ingressgateway # use istio default controller
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+#    - "*"
+    - 'guestbook.stg.digital'
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: virtual-service-guestbook
+  namespace: stg
+spec:
+  hosts:
+#    - '*'
+    - 'guestbook.stg.digital'
+  gateways:
+    - guestbook-gateway
+  http:
+    - route:
+        - destination:
+            host: guestbook

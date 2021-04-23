@@ -18,3 +18,4 @@ bin/
 .gitsecret/keys/random_seed
 !*.secret
 flagger/flagger.yaml
+stg/guestbook/analyzer-deployment.yaml
